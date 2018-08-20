@@ -13,13 +13,15 @@ conflicts=(dmenu)
 source=()
 md5sums=()
 
+builddir=$(pwd)
+
 build() {
-	cd /home/kn/src/dmenu
+  cd $builddir
 	make
 }
 
 package() {
-	cd /home/kn/src/dmenu
+  cd $builddir
 	make DESTDIR="$pkgdir" PREFIX=/usr install
 	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
