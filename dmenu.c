@@ -7,9 +7,7 @@
 #include <string.h>
 #include <strings.h>
 #include <time.h>
-#ifdef __OpenBSD__
 #include <unistd.h>
-#endif
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
@@ -645,6 +643,11 @@ run(void)
 		if (XFilterEvent(&ev, None))
 			continue;
 		switch(ev.type) {
+		case DestroyNotify:
+			if (ev.xdestroywindow.window != win)
+				break;
+			cleanup();
+			exit(1);
 		case Expose:
 			if (ev.xexpose.count == 0)
 				drw_map(drw, win, 0, 0, mw, mh);
@@ -756,7 +759,7 @@ setup(void)
 	XMapRaised(dpy, win);
 	XSetInputFocus(dpy, win, RevertToParent, CurrentTime);
 	if (embed) {
-		XSelectInput(dpy, parentwin, FocusChangeMask);
+		XSelectInput(dpy, parentwin, FocusChangeMask | SubstructureNotifyMask);
 		if (XQueryTree(dpy, parentwin, &dw, &w, &dws, &du) && dws) {
 			for (i = 0; i < du && dws[i] != win; ++i)
 				XSelectInput(dpy, dws[i], FocusChangeMask);
@@ -843,7 +846,7 @@ main(int argc, char *argv[])
 		die("pledge");
 #endif
 
-	if (fast) {
+	if (fast && !isatty(0)) {
 		grabkeyboard();
 		readstdin();
 	} else {
