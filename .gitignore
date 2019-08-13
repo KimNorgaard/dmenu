@@ -1,0 +1,5 @@
+*.o
+pkg/
+dmenu
+stest
+dmenu-*.tar.xz

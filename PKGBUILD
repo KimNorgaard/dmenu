@@ -1,5 +1,5 @@
 pkgname=dmenu
-pkgver=4.8
+pkgver=4.9
 pkgrel=1
 pkgdesc="My own fork of dmenu"
 url="https://tools.suckless.org/dmenu/"
