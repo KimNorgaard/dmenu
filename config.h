@@ -5,7 +5,7 @@ static int topbar = 1;                      /* -b  option; if 0, dmenu appears a
 static int fuzzy = 1;                      /* -F  option; if 0, dmenu doesn't use fuzzy matching     */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-	"monospace:size=12"
+	"Iosevka:size=12"
 };
 // static const char *fonts[] = {
 // 	"Iosevka Term:hinting=True:antialias=True:size=10"
@@ -13,8 +13,8 @@ static const char *fonts[] = {
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { "#CCCCCC", "#191919" },
-	[SchemeSel] = { "#40BDFF", "#191919" },
+	[SchemeNorm] = { "#ad99ad", "#230023" },
+	[SchemeSel] = { "#cc00cc", "#230023" },
 	[SchemeOut] = { "#000000", "#00ffff" },
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
