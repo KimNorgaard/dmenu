@@ -1,6 +1,6 @@
 pkgname=dmenu-kn
-pkgver=4.9
-pkgrel=2
+pkgver=5.2
+pkgrel=1
 pkgdesc="My own fork of dmenu"
 url="https://tools.suckless.org/dmenu/"
 arch=('x86_64')
